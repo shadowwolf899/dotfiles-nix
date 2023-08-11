@@ -1,0 +1,13 @@
+name: Build repo
+on: 
+  - push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+      - name: Install nix
+        uses: cachix/install-nix-action@v22
+      - name: Build dotfiles
+        run: nix run -- build --flake .
