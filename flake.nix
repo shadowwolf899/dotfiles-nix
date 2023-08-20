@@ -15,6 +15,7 @@
       modules =
         [ ./hardware-configuration.nix
           ({ pkgs, ... }: {
+            system.stateVersion = "23.11";
             boot.loader.systemd-boot.enable = true;
             boot.loader.efi.canTouchEfiVariables = true;
             networking.networkmanager.enable = true;
@@ -61,7 +62,7 @@
               isNormalUser = true;
               description = "Jericho Keyne";
               extraGroups = [ "networkmanager" "wheel" ];
-              packages = with nixpkgs; [
+              packages = with pkgs; [
                 firefox
                 thunderbird
               ];
@@ -74,7 +75,7 @@
             # $ nix search wget
             environment.systemPackages = with pkgs; [
               vim
-              nvim
+              neovim
               wget
               helix
             ];
@@ -89,11 +90,6 @@
         ];
     };
     defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
-
-    nativeBuildInputs = with nixpkgs; [ rustc pkg-config openssl gcc ];
-    # buildInputs = with nixpkgs; [ openssl ];
-
-    #virtualisation.docker.enable = true;
 
     homeConfigurations = {
       "jericho" = home-manager.lib.homeManagerConfiguration {

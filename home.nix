@@ -16,6 +16,13 @@
 
   programs.home-manager.enable = true;
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableNushellIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   programs.git = {
     enable = true;
     delta.enable = true;
