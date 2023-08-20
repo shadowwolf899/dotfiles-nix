@@ -9,6 +9,9 @@
     git
     gnumake
     just
+    gcc
+    rustc
+    pkg-config
   ];
 
   programs.home-manager.enable = true;
