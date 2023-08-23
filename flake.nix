@@ -61,10 +61,11 @@
             users.users.jericho = {
               isNormalUser = true;
               description = "Jericho Keyne";
-              extraGroups = [ "networkmanager" "wheel" ];
+              extraGroups = [ "networkmanager" "wheel" "docker" ];
               packages = with pkgs; [
                 firefox
                 thunderbird
+                docker-compose
               ];
             };
 
@@ -80,12 +81,13 @@
               helix
             ];
             time.timeZone = "America/New_York";
-            virtualisation.podman = {
-              enable = true;
-              dockerCompat = true;
-              dockerSocket.enable = true;
-              autoPrune.enable = true;
-            };
+            virtualisation.docker.enable = true;
+            #virtualisation.podman = {
+            #  enable = true;
+            #  dockerCompat = true;
+            #  dockerSocket.enable = true;
+            #  autoPrune.enable = true;
+            #};
           })
         ];
     };
